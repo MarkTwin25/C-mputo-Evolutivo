@@ -1,8 +1,7 @@
-# Rastringin 
 
 # Imports 
-import math
-import sys
+import math # bibloteca para manejar operaciones matematicas
+import sys # bibloteca para manejar argumentos de la linea de comandos
 
 # Funcion Rastringin
 def rastringin(x: list, dimension: int):

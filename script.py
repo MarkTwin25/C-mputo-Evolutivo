@@ -51,9 +51,11 @@ def busqueda_aleatoria(funcion: str, dimension: int, iteraciones: int, intervalo
     Realiza una busqueda aleatoria para encontrar el minimo de una funcion
     dada en un intervalo dado.
     """
-    # Se inicializa la mejor solucion encontrada
-    mejor_solucion = [0] * dimension
-    peor_solucion = [0] * dimension
+   # Se genera el primer punto aleatorio
+    punto = [random.uniform(intervalo[0], intervalo[1]) for _ in range(dimension)]
+    # Se inicializa la mejor y peor solucion encontrada con el primer punto
+    mejor_solucion = punto
+    peor_solucion = punto
     promedio = 0
 
     # Se realiza la busqueda aleatoria

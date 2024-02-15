@@ -1,4 +1,3 @@
-
 # Imports 
 import math # bibloteca para manejar operaciones matematicas
 import sys # bibloteca para manejar argumentos de la linea de comandos
@@ -67,7 +66,6 @@ def busqueda_aleatoria(funcion: str, dimension: int, iteraciones: int, intervalo
         # Se compara el resultado con el mejor resultado encontrado
         if resultado < evaluar(funcion, dimension, *mejor_solucion):
             mejor_solucion = punto
-            # promedio de los valores encontrados
             
         if resultado > evaluar(funcion, dimension, *peor_solucion):
             peor_solucion = punto
@@ -75,6 +73,7 @@ def busqueda_aleatoria(funcion: str, dimension: int, iteraciones: int, intervalo
         promedio += resultado
         # promedio de los valores encontrados
     promedio_a =  promedio / iteraciones
+    print(f"funcion: {funcion}")
     print("Mejor solucion encontrada:")
     print(f"x = {mejor_solucion}")
     print(f"f(x) = {evaluar(funcion, dimension, *mejor_solucion)}")

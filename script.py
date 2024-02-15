@@ -2,11 +2,12 @@
 # Imports 
 import math # bibloteca para manejar operaciones matematicas
 import sys # bibloteca para manejar argumentos de la linea de comandos
+import random # bibloteca para manejar numeros aleatorios
 
 # Funcion Rastringin
 def rastringin(x: list, dimension: int):
     suma = 0
-    for i in range(dimension):
+    for i in range(dimension): 
         suma += x[i] ** 2 - 10 * math.cos(2 * math.pi * x[i])
     return 10 * dimension + suma
 
@@ -34,32 +35,86 @@ def evaluar(funcion: str, dimension: int, *args):
     """
 
     if funcion == "rastringin":
-        print(rastringin(list(args), dimension)) 
+        return rastringin(list(args), dimension)
     elif funcion == "rosembrock":
-        print(rosembrock(list(args), dimension))
+        return rosembrock(list(args), dimension)
     elif funcion == "schwefel":
-        print(schwefel(list(args), dimension))
+        return schwefel(list(args), dimension)
     else:
         print("Funcion no encontrada")
 
 
+# Funcion de busqueda aleatoria
+
+def busqueda_aleatoria(funcion: str, dimension: int, iteraciones: int, intervalo: list):
+    """
+    Realiza una busqueda aleatoria para encontrar el minimo de una funcion
+    dada en un intervalo dado.
+    """
+    # Se inicializa la mejor solucion encontrada
+    mejor_solucion = [0] * dimension
+    peor_solucion = [0] * dimension
+    promedio = 0
+
+    # Se realiza la busqueda aleatoria
+    for _ in range(iteraciones):
+        # Se genera un punto aleatorio
+        punto = [random.uniform(intervalo[0], intervalo[1]) for _ in range(dimension)]
+        # Se evalua la funcion en el punto
+        resultado = evaluar(funcion, dimension, *punto)
+        # Se compara el resultado con el mejor resultado encontrado
+        if resultado < evaluar(funcion, dimension, *mejor_solucion):
+            mejor_solucion = punto
+            # promedio de los valores encontrados
+            
+        if resultado > evaluar(funcion, dimension, *peor_solucion):
+            peor_solucion = punto
+        
+        promedio += resultado
+        # promedio de los valores encontrados
+    promedio_a =  promedio / iteraciones
+    print("Mejor solucion encontrada:")
+    print(f"x = {mejor_solucion}")
+    print(f"f(x) = {evaluar(funcion, dimension, *mejor_solucion)}")
+    print("Peor solucion encontrada:")
+    print(f"x = {peor_solucion}")
+    print(f"f(x) = {evaluar(funcion, dimension, *peor_solucion)}")
+    print("Valor promedio:")
+    print(f"x = {promedio_a}")
+
+
 
 if __name__ == "__main__":
-# Se espera que se pase la funcion, la dimension y los argumentos
-    if len(sys.argv) < 4: # Si no se pasan los argumentos necesarios se termina el programa
-        print("Faltan argumentos")
-        sys.exit(1)
+# Se espera que se pase la funcion, la dimension y los argumentos 
+    if sys.argv[1] == "busqueda_aleatoria":
+    # Se espera que se pase la funcion, la dimension, el numero de iteraciones y el intervalo
+        if len(sys.argv) < 6: # Si no se pasan los argumentos necesarios se termina el programa
+            print("Faltan argumentos")
+            sys.exit(1)
 
-    # Se obtienen los argumentos
-    funcion = sys.argv[1]
-    dimension = int(sys.argv[2])
-    args = [float(x) for x in sys.argv[3:]]
+        # Se obtienen los argumentos
+        funcion = sys.argv[2]
+        dimension = int(sys.argv[3])
+        iteraciones = int(sys.argv[4])
+        intervalo = [float(x) for x in sys.argv[5:]]
+        # Se realiza la busqueda aleatoria
+        busqueda_aleatoria(funcion, dimension, iteraciones, intervalo)
+    else:
 
-    # Se evalua la funcion
-    resultado = evaluar(funcion, dimension, *args)
-    # Se imprime el resultado en terminal
-    print(resultado)
-    
+        if len(sys.argv) < 4: # Si no se pasan los argumentos necesarios se termina el programa
+            print("Faltan argumentos")
+            sys.exit(1)
+
+        # Se obtienen los argumentos
+        funcion = sys.argv[1]
+        dimension = int(sys.argv[2])
+        args = [float(x) for x in sys.argv[3:]]
+
+        # Se evalua la funcion
+        resultado = evaluar(funcion, dimension, *args)
+        # Se imprime el resultado en terminal
+        print(resultado)
+        
 
 
 

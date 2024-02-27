@@ -126,5 +126,38 @@ def decodificar_vector(x_cod, num_bits, a, b):
     # Usamos la funcion decodificar implementada anteriormente
     x = [decodificar(i, num_bits, a, b) for i in x_cod]
     return x
+    
+######### EJERCICIO 2 ##########
+def leer_instancia(nombre_archivo):
+    """
+    Lee un archivo con información de ejemplares (instancias) del problema de coloración.
+    Parameters:
+    nombre_archivo -- nombre del archivo a leer
+    Returns:
+    nVertices -- número de vértices del grafo
+    aristas -- lista de aristas del grafo
+    """
 
+    # Inicializamos la lista de aristas
+    aristas = []
+    # Abrimos el archivo
+    with open(nombre_archivo, 'r') as archivo:
+        # Leemos el archivo línea por línea
+        for linea in archivo:
+            # Ignoramos las líneas que empiezan con c
+            if linea[0] == 'c':
+                continue
+            # Si encontramos la línea que empieza con p, leemos el número de vértices
+            # y aristas
+            if linea[0] == 'p':
+                _, _, nVertices, nAristas = linea.split() #
+                nVertices = int(nVertices)
+                nAristas = int(nAristas)
+            # Si encontramos la línea que empieza con e, leemos las aristas
+            if linea[0] == 'e':
+                _, x, y = linea.split()
+                x = int(x)
+                y = int(y)
+                aristas.append((x, y))
+    return nVertices, aristas
 

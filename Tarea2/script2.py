@@ -83,10 +83,13 @@ def decodificar(x_cod, num_bits, a, b):
     x -- número real decodificado
 
     """
-    
+    # calcula la precision
     precision = (b - a) / (2**num_bits)
+
+    # decodifica el indice del intervalo al que pertenece x
     indice = binario_a_decimal(x_cod)
-    #indice = int(''.join([str(i) for i in x_cod]), 2)
+
+    # calcula x a partir del indice
     x = a + indice * precision
     return x
 
@@ -104,7 +107,7 @@ def codificar_vector(x, num_bits, a, b):
     binario -- lista de listas de 0s y 1s que representa el vector de números reales
 
     """
-    
+    # Usamos la funcion codificar implementada anteriormente
     binario = [codificar(i, num_bits, a, b) for i in x]
     return binario
 
@@ -120,7 +123,7 @@ def decodificar_vector(x_cod, num_bits, a, b):
     x -- vector de números reales decodificado
 
     """
-    
+    # Usamos la funcion decodificar implementada anteriormente
     x = [decodificar(i, num_bits, a, b) for i in x_cod]
     return x
 

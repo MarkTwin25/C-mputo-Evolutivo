@@ -127,6 +127,7 @@ def decodificar_vector(x_cod, num_bits, a, b):
     x = [decodificar(i, num_bits, a, b) for i in x_cod]
     return x
 
+
 ########################## Ejercicio 2 ##########################
 
 # Implementa la lectura de archivos para leer información de ejemplares (instancias)

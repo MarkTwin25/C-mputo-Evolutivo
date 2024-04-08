@@ -89,6 +89,9 @@ def recocido_simulado(funcion, intervalo, num_bits, T0, n, kmax):
 # print(recocido_simulado(rosenbrock, [-2.048, 2.048], 10, 100, 0.1, 1000))
 
 
+
+
+
 import sys
 
 if __name__ == "__main__":

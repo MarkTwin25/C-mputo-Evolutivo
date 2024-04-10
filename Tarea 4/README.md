@@ -9,7 +9,7 @@ funciones de prueba"""
 
 Podemos ejecutar:
 
-##### python .\ejercicio1.py graficar
+#### python .\ejercicio1.py graficar
 
 Eston nos generara todas las graficas pedidas.
 

@@ -25,3 +25,18 @@ Podemos ejecutar:
 #### python .\ejercicio1.py estadisticas
 
 Por ultimo, el programa tambien admite que se corra sin ningun argumento, si se desea hacer esto, se ejecutaran los dos incisos anteriores. Esto puede tomar mas tiempo.
+
+
+## Ejercicio 2
+
+De la misma manera que en el ejercicio 1, se puede correr de distintas formas.
+
+Si lo que se quiere es ejecutar solo el algoritmo genetico, debera usar:
+
+#### python .\ejercicio2.py genetico
+
+De ota manera, si lo que se quiere es solo ver la grafica de evolución, debera:
+
+#### python .\ejercicio2.py grafica
+
+Por ultimo, el programa tambien admite que se corra sin ningun argumento, si se desea hacer esto, se ejecutaran los dos incisos anteriores. Esto puede tomar mas tiempo.

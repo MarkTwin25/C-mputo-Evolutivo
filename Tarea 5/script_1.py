@@ -38,7 +38,7 @@ def enfriamiento_exponencial(T0, n, k):
     """
     return T0 * n**k
 
-def recocido_simulado(funcion, intervalo, num_bits, T0, n, kmax, enfriamiento):
+def recocido_simulado(funcion, intervalo, num_bits, T0, n, kmax, enfriamiento, semilla=None):
     """
     Algoritmo de recocido simulado para optimizar funciones de optimización continua.
     Parameters:
@@ -49,9 +49,13 @@ def recocido_simulado(funcion, intervalo, num_bits, T0, n, kmax, enfriamiento):
     n -- parámetro de enfriamiento
     kmax -- número máximo de iteraciones
     enfriamiento -- esquema de enfriamiento
+    semilla -- semilla del generador de números aleatorios
     Returns:
     mejor_solucion -- mejor solución encontrada
     """
+    # Fija la semilla del generador de números aleatorios
+    if semilla is not None:
+        random.seed(semilla)
     # Genera una solución aleatoria
     solucion = [random.randint(0, 1) for _ in range(num_bits)]
     # Inicializa la mejor solución
@@ -151,25 +155,7 @@ def ejecutar_recocido_simulado():
         print("{:<20} {:<20} {:<20}".format(resultado[0], resultado[1], str(resultado[2])))
 
 
-# Los resultados son:
-#Recocido simulado
-#Función              Enfriamiento         Mejor solución      
-#sphere               Lineal               0.02502443792766318
-#sphere               Exponencial          -0.005004887585532636
-#ackley               Lineal               0.02932551319648269
-#ackley               Exponencial          -0.02932551319648269
-#griewank             Lineal               -25.219941348973634
-#griewank             Exponencial          -12.316715542522047
-#rastrigin            Lineal               -0.005004887585532636
-#rastrigin            Exponencial          0.005004887585532636
-#rosenbrock           Lineal               -0.9389169110459432
-#rosenbrock           Exponencial          1.0229990224828933
-
-# ¿Cuál es el mejor esquema de enfriamiento para cada función de optimización?
-#Para "sphere", el esquema de enfriamiento lineal parece ser mejor.
-#Para "griewank" y "rosenbrock", el esquema de enfriamiento exponencial parece ser mejor.
-# Para "ackley" y "rastringin ", ambos esquemas son igualmente efectivos, pero producen soluciones con signos opuestos.
-
+#ejecutar_recocido_simulado()
 
 #1b Parámetros del Algoritmo genético
 #   Comparar los siguientes esquemas de reemplazo:
@@ -236,7 +222,7 @@ def reemplazo_peores(poblacion, aptitudes, nueva_poblacion, nueva_aptitudes):
         aptitudes[indice] = nueva_aptitudes[i]
     return poblacion, aptitudes
 
-def algoritmo_genetico(funcion, intervalo, tamano_poblacion, num_genes, prob_mutacion, num_generaciones, reemplazo):
+def algoritmo_genetico(funcion, intervalo, tamano_poblacion, num_genes, prob_mutacion, num_generaciones, reemplazo, semilla=None):
     """
     Algoritmo genético para optimizar funciones de optimización continua.
     Parameters:
@@ -247,9 +233,14 @@ def algoritmo_genetico(funcion, intervalo, tamano_poblacion, num_genes, prob_mut
     prob_mutacion -- probabilidad de mutación
     num_generaciones -- número de generaciones
     reemplazo -- esquema de reemplazo
+    semilla -- semilla del generador de números aleatorios
     Returns:
     mejor_solucion -- mejor solución encontrada
     """
+    # Fija la semilla del generador de números aleatorios
+    if semilla is not None:
+        random.seed(semilla)
+
     # Inicializa la población
     poblacion = [[random.randint(0, 1) for _ in range(num_genes)] for _ in range(tamano_poblacion)]
     # Inicializa las aptitudes de la población
@@ -362,46 +353,12 @@ def ejecutar_algoritmo_genetico():
 
         print("{:<20} {:<30} {:<20}".format(resultado[0], resultado[1], str(resultado[2])))
 
-print("Recocido simulado")
+#print("Recocido simulado")
 #ejecutar_recocido_simulado()
 
-print("\nAlgoritmo genético")
+#print("\nAlgoritmo genético")
 #ejecutar_algoritmo_genetico()
 
-# LOS RESULTADOS SON:
-#Algoritmo genético
-#Función              Reemplazo                      Mejor solución      
-#sphere               Generacional                   0.005004887585532636
-#sphere               Generacional con elitismo      0.005004887585532636
-#sphere               Reemplazo de los peores        -0.005004887585532636
-#ackley               Generacional                   0.02932551319648269
-#ackley               Generacional con elitismo      -0.02932551319648269
-#ackley               Reemplazo de los peores        -0.02932551319648269
-#griewank             Generacional                   0.5865102639296538
-#griewank             Generacional con elitismo      -0.5865102639296538
-#griewank             Reemplazo de los peores        -0.5865102639296538
-#rastrigin            Generacional                   -0.005004887585532636
-#rastrigin            Generacional con elitismo      0.005004887585532636
-#rastrigin            Reemplazo de los peores        0.005004887585532636
-#rosenbrock           Generacional                   -0.0020019550342129655
-#rosenbrock           Generacional con elitismo      -0.0020019550342129655
-#rosenbrock           Reemplazo de los peores        0.0020019550342129655
-
-# ¿Cuál es el mejor esquema de reemplazo para cada función de optimización?
-# Para la función sphere, los tres esquemas de reemplazo son igualmente efectivos.
-# Para la función ackley, los tres esquemas de reemplazo son igualmente efectivos.
-# Para la función griewank, el mejor esquema de reemplazo es generacional
-# Para la función rastrigin, el mejor esquema de reemplazo es generacional con elitismo
-# Para la función rosenbrock, el mejor esquema de reemplazo de los peores
-
-# ¿Qué esquema de reemplazo es el mejor en general?
-# El mejor esquema de reemplazo en general es generacional con elitismo
-# porque es el que obtiene los mejores resultados en la mayoría de las funciones de optimización.
-
-# ¿Qué esquema de enfriamiento es el mejor en general?
-# El mejor esquema de enfriamiento en general es el exponencial
-
-# comparar algoritmo genetico con esquema de reemplazo generacional con elitismo y recocido simulado con esquema de enfriamiento exponencial
 
 # Funciones de optimización
 def genetico_vs_recocido():
@@ -427,18 +384,4 @@ def genetico_vs_recocido():
     for resultado in resultados:
         print("{:<20} {:<20} {:<20}".format(resultado[0], str(resultado[1]), str(resultado[2])))
 
-genetico_vs_recocido()
-
-# resultados
-#Función              Algoritmo genético   Recocido simulado   
-#sphere               0.005004887585532636 -0.005004887585532636
-#ackley               0.02932551319648269  0.02932551319648269 
-#griewank             0.5865102639296538   12.316715542522047  
-#rastrigin            0.005004887585532636 0.9559335288367548  
-#rosenbrock           -0.0020019550342129655 0.13813489736070395 
-
-# ¿Cuál es el mejor algoritmo para cada función de optimización?
-
-#Algoritmo genético: Mejor para "griewank" y "rastrigin".
-#Recocido simulado: Mejor para "rosenbrock".
-#Ambos algoritmos son comparables para "sphere" y "ackley".
+# genetico_vs_recocido()

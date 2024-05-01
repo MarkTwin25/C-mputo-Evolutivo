@@ -96,7 +96,8 @@ def experimentar_esquemas_reemplazo(semilla=None):
                 mejor_solucion = algoritmo_genetico(funcion, intervalo, tamano_poblacion, num_genes, prob_mutacion, num_generaciones, reemplazo, semilla)
                 promedio += funcion([mejor_solucion])
             promedio /= repeticiones
-            print("{:<20} {:<30} {:<20} {:<20} {:<20} {:<20} {:<20}".format(funcion.__name__, alias_reemplazos[reemplazo], promedio, tamano_poblacion, num_genes, prob_mutacion, num_generaciones))
+            print("{:<20} {:<30} {:<20} {:<20} {:<20} {:<20} {:<20}".format(funcion.__name__, alias_reemplazos[reemplazo], promedio, tamano_poblacion, num_genes, 
+                                                                                                                                prob_mutacion, num_generaciones))
 
 #ejecutar con semilla pasado como parámetro
 #experimentar_esquemas_reemplazo()
@@ -151,6 +152,12 @@ def experimentar_genetico_vs_recocido(semilla=None):
         promedio_genetico /= repeticiones
         promedio_recocido /= repeticiones
         print("{:<20} {:<20} {:<20} {:<20} {:<20}".format(funcion.__name__, promedio_genetico, promedio_recocido, tamano_poblacion, num_genes))
+
+# 2.b) Fijar criterio de término para todas las ejecuciones, de manera que se tenga una
+# comparación justa (por ejemplo con tiempo total de ejecución).
+
+# El criterio de término es el número de iteraciones, que se fija en 1000 para el recocido simulado y en 100 para el algoritmo genético.
+# se eligio este criterio de termino debido a que es un número de iteraciones suficiente para que los algoritmos converjan a una solución.
 
 #ejecutar con semilla pasado como parámetro
 #experimentar_genetico_vs_recocido()

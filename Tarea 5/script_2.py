@@ -6,19 +6,6 @@ import matplotlib.pyplot as plt
 from funciones import sphere, ackley, griewank, rastrigin, rosenbrock
 
 from script_1 import *
-# Ejercicio 2. Experimentación en Optimización continua
-
-# 2.a) Realizar al menos 30 repeticiones para diferentes funciones de prueba de
-# optimización continua, en dimensión 10. *
-# 2.b) Fijar criterio de término para todas las ejecuciones, de manera que se tenga una
-# comparación justa (por ejemplo con tiempo total de ejecución).
-# 2.c) El programa deberá imprimir como salida la semilla del generador de números
-# aleatorios que se utilizó para la ejecución
-# 2.d) El programa deberá permitir ingresar (como parámetro opcional) la semilla del
-# generador de aleatorios con las que se hará la ejecución. Si no se indica nada, el
-#programa deberá generar una semilla adecuada.
-
-# *Utiliza las funciones de optimización continua contenidas en el archivo funciones.py
 
 def experimentar_esquemas_enfriamiento(semilla=None):
     # Funciones de optimización

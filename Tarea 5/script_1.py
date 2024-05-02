@@ -1,10 +1,3 @@
-#Ejercicio 1. Parametrización de Algoritmos
-#En esta tarea vamos a comparar diferentes algoritmos para resolver problemas de optimización
-#continua. Implementa los cambios necesarios para poder realizar las siguientes comparaciones:
-
-#1.a) Parámetros del Recocido simulado
-#a) Comparar al menos dos esquemas de enfriamiento.
-
 import numpy as np
 import random
 import math
@@ -157,11 +150,7 @@ def ejecutar_recocido_simulado():
 
 #ejecutar_recocido_simulado()
 
-#1b Parámetros del Algoritmo genético
-#   Comparar los siguientes esquemas de reemplazo:
-#i) Generacional
-#ii) Generacional con elitismo
-#iii) Reemplazo de los peores
+
 
 def generacional(poblacion, aptitudes, nueva_poblacion, nueva_aptitudes):
     """
@@ -385,3 +374,21 @@ def genetico_vs_recocido():
         print("{:<20} {:<20} {:<20}".format(resultado[0], str(resultado[1]), str(resultado[2])))
 
 # genetico_vs_recocido()
+
+import sys
+
+if __name__ == "__main__":
+    if len(sys.argv) == 1:
+        print("Uso: python script_1.py [opción]")
+    elif sys.argv[1] == "recocido":
+        ejecutar_recocido_simulado()
+    elif sys.argv[1] == "genetico":
+        ejecutar_algoritmo_genetico()
+    elif sys.argv[1] == "comparar":
+        genetico_vs_recocido()
+    else:
+        print("Opción no válida")
+
+#python script_1.py recocido
+#python script_1.py genetico
+#python script_1.py comparar

@@ -8,11 +8,6 @@ from funciones import sphere, ackley, griewank, rastrigin, rosenbrock
 from script_1 import *
 from script_2 import *
 
-# Ejercicio 3. Análisis de resultados
-#Después de realizar la experimentación del ejercicio anterior, se deberá incluir en el reporte lo siguiente:
-# 3.a) Gráficas de evolución de aptitud para diferentes ejecuciones.
-# basta con incluir algunos ejemplos que sean interesantes ( debe incluir al menos
-# 2 x ejemplar (una por cada una de las estrategias) y esto para al menos y ejemplares interesantes.)
 
 import matplotlib.pyplot as plt
 
@@ -114,15 +109,6 @@ def graficar_ejemplos_aptitud():
         graficar_evolucion_aptitud(funcion, intervalo, 10, 100, 0.1, 1000, enfriamiento_exponencial, 1000, semilla)
         graficar_evolucion_aptitud_genetico(funcion, intervalo, 100, 10, 0.01, 100, generacional_elitismo, semilla)
 
-#graficar_ejemplos_aptitud()
-
-# 3.c)Gráficas de evolución promedio de aptitud. Una gráfica por cada ejemplar.
-# En esta gráfica deberían aparecer todas los algoritmos (estrategias) que se compararon.
-# probar 1 funcion de optimización para los dos esquemas de enfriamiento y los tres esquemas de reemplazo y meterlos en la misma grafica
-
-# retorna grafica con 5 lineas, 2 para enfriamiento exponencial y 3 para enfriamiento lineal en diferentes colores y
-# en la misma grafica
-
 
 def graficar_evolucion_aptitud_2(funcion, intervalo, num_bits, T0, n, kmax, enfriamiento, iteraciones, semilla=None):
     # Fija la semilla del generador de números aleatorios
@@ -210,7 +196,7 @@ def graficar_evolucion_aptitud_genetico(funcion, intervalo, tamano_poblacion, nu
     plt.xlabel("Generaciones")
     plt.ylabel("Aptitud")
     plt.title(funcion.__name__)
-    plt.show()
+    #plt.show()
 
 def graficas_aptitud(funcion, intervalo):
     # Graficar las 5 lineas en la misma grafica
@@ -224,3 +210,21 @@ def graficas_aptitud(funcion, intervalo):
 
 #graficas_aptitud(ackley, [-30, 30])
 #graficas_aptitud(rastrigin, [-5.12, 5.12])
+
+import sys
+
+if __name__ == "__main__":
+
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "1":
+            graficar_ejemplos_aptitud()
+        elif sys.argv[1] == "2":
+            graficas_aptitud(ackley, [-30, 30])
+            graficas_aptitud(rastrigin, [-5.12, 5.12])
+        else:
+            print("Argumento no válido")
+    else:
+        print("Falta argumento")
+        print("1: graficar_ejemplos_aptitud()")
+        print("2: graficas_aptitud(ackley, [-30, 30]) y graficas_aptitud(rastrigin, [-5.12, 5.12])")
+
